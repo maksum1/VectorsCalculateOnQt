@@ -81,6 +81,8 @@ public:
     void InitVectorA(Ui::MainWindow *ui);
     void InitVectorB(Ui::MainWindow *ui);
 
+    //add comment
+
 private:
 
     Ui::MainWindow *mi;

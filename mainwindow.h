@@ -41,6 +41,7 @@ private slots:
 
     void on_pushButtonMinusNumObj_clicked();
 
+
 private:
     Vector A;
     Vector B;

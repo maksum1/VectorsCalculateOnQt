@@ -177,11 +177,11 @@ int Vector::res() const
 }
 
 
-ostream& operator<<( ostream& os,  Vector& a)
-{
-    os << "X:"<<a.m_x;
-    return os;
-}
+ void operator<<(Ui::MainWindow *os, Vector& a)
+ {
+     os->line_Width->setText(QString::number(333));
+
+ }
 
 
 Vector Vector::operator+(Vector &B)

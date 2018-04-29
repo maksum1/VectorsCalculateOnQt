@@ -20,7 +20,7 @@ public:
     friend bool operator == (  Vector &b,  Vector &a) ;
     friend bool operator < (  Vector &b,  Vector &a);
     friend bool operator > (  Vector &b,  Vector &a);
-    friend ostream& operator<<(ostream& os, Vector& a);
+    friend void operator<<(Ui::MainWindow *os, Vector& a);
     friend Vector MultyVectorSkalar( Vector &A ,int Skal);
 
     //OverLoading Operators

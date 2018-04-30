@@ -37,15 +37,9 @@ private slots:
 
     void on_line_skal_editingFinished();
 
-    void on_pushButtonAddNum_clicked();
-
-    void on_pushButtonMinusNumObj_clicked();
 
 
 private:
-    Vector A;
-    Vector B;
-
 
     Ui::MainWindow *ui;
 };

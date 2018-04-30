@@ -35,7 +35,7 @@ public:
     //Functions
     Vector MultyVectorSkalar( Vector &A ,int Skal);
 
-    QString Skalar()const;
+    double Skalar(Vector &B)const;
 
     Vector V_Mult(Vector &B);
 
@@ -54,6 +54,7 @@ public:
     int res()const;
 
     //Function that counts number of create objects class Vector
+
 
     static int NumbersObj;
 
@@ -83,11 +84,13 @@ public:
 
     //add comment
 
+    int Variable;
 private:
 
     Ui::MainWindow *mi;
 
     double Width();
+
     int m_x;
     int m_y;
     int m_z;

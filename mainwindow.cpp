@@ -30,34 +30,50 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+    Vector::NumbersObj=0;
+    Vector A;
+    Vector B;
+    Vector C;
 
-//initiations of A and B Vectors
+
+    //initiations of A and B Vectors
     A.InitVectorA(ui);
     B.InitVectorB(ui);
 
     //initiation C vector
-    Vector C;
 
-  //  this << A + B;
-//    C.PrintSumVectors(ui);
+    ui->line_skalar->setText(QString::number(A.Skalar(B)));
+
+
+    C=A+B;
+    C.Variable=1;
+    ui<<C;
 
     C = A - B ;
-    C.PrintMinusVector(ui);
+    C.Variable=2;
+    ui<<C;
 
     C = A * B ;
-    C.PrintMultyVectors(ui);
 
     C = A.V_Mult(B);//Find Vector Multy
-    C.PrintVectMulty(ui);
+    C.Variable=3;
+    ui<<C;
+
 
     C = A.K_Mult(ui->line_K->text().toInt());//multiply vector A on number K
-    C.PrintMultyOnNumber(ui);
+    C.Variable=4;
+    ui<<C;
 
-    A.PrintWidthA(ui);
-    B.PrintWidthB(ui);
 
     C=MultyVectorSkalar(A,ui->line_skal->text().toInt());//multiply vector A on number Skalar
-    C.PrintVectorOnSkalar(ui);
+    C.Variable=7;
+    ui<<C;
+
+    B.Variable=5;
+    ui<<B;
+
+    A.Variable=6;
+    ui<<A;
 
 
     //Compare vector A and B
@@ -78,12 +94,10 @@ void MainWindow::on_pushButton_clicked()
         ui->lineLower->setText("No");
         ui->linehigher->setText("Yes");
     }
- Vector::NumbersObj+=10;
- //get number of obj
+    //get number of obj
 
     ui->lineNumberObg->setText(QString::number(Vector::NumbersObj));
 
-   ui<<C;
 }
 
 
@@ -131,17 +145,4 @@ void MainWindow::on_line_skal_editingFinished()
 {
     ui->pushButton->click();
 
-}
-
-void MainWindow::on_pushButtonAddNum_clicked()
-{
-    Vector::AddNumberObj();
-    ui->pushButton->click();
-
-}
-
-void MainWindow::on_pushButtonMinusNumObj_clicked()
-{
-    Vector::MinusNumberObj();
-    ui->pushButton->click();
 }

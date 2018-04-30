@@ -4,73 +4,6 @@
 Vector::Vector(int x , int y , int z ):m_x(x),m_y(y),m_z(z)
 {}
 
-//Static function just add 1 for statinc variable (don't add object)
-int Vector::AddNumberObj()
-{
-    NumbersObj++;
-    return NumbersObj;
-}
-//Same to subtract
-int Vector::MinusNumberObj()
-{
-    NumbersObj--;
-    return NumbersObj;
-}
-
-
-//Print
-void Vector::PrintSumVectors(Ui::MainWindow *ui)
-{
-    ui->line_Add_x->setText(QString::number(this->x()));
-    ui->line_Add_y->setText(QString::number(this->y()));
-    ui->line_Add_z->setText(QString::number(this->z()));
-}
-
-void Vector::PrintMinusVector(Ui::MainWindow *ui)
-{
-    ui->line_Minus_x->setText(QString::number(this->x()));
-    ui->line_Minus_y->setText(QString::number(this->y()));
-    ui->line_Minus_z->setText(QString::number(this->z()));
-}
-
-void Vector::PrintMultyVectors(Ui::MainWindow *ui)
-{
-    ui->line_skalar->setText(this->Skalar());
-}
-
-void Vector::PrintVectMulty(Ui::MainWindow *ui)
-{
-
-    ui->line_vect_x->setText(QString::number(this->x()));
-    ui->line_vect_y->setText(QString::number(this->y()));
-    ui->line_vect_z->setText(QString::number(this->z()));
-}
-
-void Vector::PrintMultyOnNumber(Ui::MainWindow *ui)
-{
-    ui->line_K_x->setText(QString::number(this->x()));
-    ui->line_K_y->setText(QString::number(this->y()));
-    ui->line_K_z->setText(QString::number(this->z()));
-}
-
-void Vector::PrintWidthB(Ui::MainWindow *ui)
-{
-    ui->lineWidthB->setText(QString::number(this->Width()));
-
-}
-
-void Vector::PrintWidthA(Ui::MainWindow *ui)
-{
-    ui->line_Width->setText(QString::number(this->Width()));
-}
-
-void Vector::PrintVectorOnSkalar(Ui::MainWindow *ui)
-{
-
-    ui->line_sk_x->setText(QString::number(this->x()));
-    ui->line_sk_y->setText(QString::number(this->y()));
-    ui->line_sk_z->setText(QString::number(this->z()));
-}
 
 void Vector::InitVectorB(Ui::MainWindow *ui)
 {
@@ -95,11 +28,11 @@ Vector::Vector():m_x(0),m_y(0),m_z(0)
 }
 
 
-QString Vector::Skalar() const
+double Vector::Skalar(Vector &B) const
 {
 
-    QString result;
-    result= QString::number( m_x+m_y+m_z) ;
+    double result;
+    result =  m_x*B.x()+m_y*B.y()+m_z*B.z();
 
     return result;
 }
@@ -177,11 +110,53 @@ int Vector::res() const
 }
 
 
- void operator<<(Ui::MainWindow *os, Vector& a)
- {
-     os->line_Width->setText(QString::number(333));
+void operator<<(Ui::MainWindow *os, Vector &a )
+{
+    //os->line_Width->setText(QString::number());
 
- }
+    if(a.Variable ==1 )
+    {
+        os->line_Add_x->setText(QString::number(a.x()));
+        os->line_Add_y->setText(QString::number(a.y()));
+        os->line_Add_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 2)
+    {
+        os->line_Minus_x->setText(QString::number(a.x()));
+        os->line_Minus_y->setText(QString::number(a.y()));
+        os->line_Minus_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 3)
+    {
+        os->line_vect_x->setText(QString::number(a.x()));
+        os->line_vect_y->setText(QString::number(a.y()));
+        os->line_vect_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 4)
+    {
+        os->line_K_x->setText(QString::number(a.x()));
+        os->line_K_y->setText(QString::number(a.y()));
+        os->line_K_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 5)
+    {
+        os->lineWidthB->setText(QString::number(a.Width()));
+    }
+    if(a.Variable == 6)
+    {
+        os->line_Width->setText(QString::number(a.Width()));
+    }
+
+    if(a.Variable == 7)
+    {
+        os->line_sk_x->setText(QString::number(a.x()));
+        os->line_sk_y->setText(QString::number(a.y()));
+        os->line_sk_z->setText(QString::number(a.z()));
+    }
+
+
+
+}
 
 
 Vector Vector::operator+(Vector &B)

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include<vectorio.h>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -8,8 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("JustVectors");//Change title of mainwindow
 
-
-   // QWidget::showFullScreen();
     // Use Validator , so we can enter just numbers (-1000 to 1000)
     ui->line_a_x->setValidator( new QIntValidator(-1000, 1000, this) );
     ui->line_a_y->setValidator( new QIntValidator(-1000, 1000, this) );
@@ -35,6 +34,7 @@ void MainWindow::on_pushButton_clicked()
     Vector::NumbersObj=0;
     Vector A;
     Vector B;
+    Vector C;
 
 
     //initiations of A and B Vectors
@@ -46,33 +46,37 @@ void MainWindow::on_pushButton_clicked()
     ui->line_skalar->setText(QString::number(A.Skalar(B)));
 
 
-    A.AddingVectors(B);
-    A.Variable=1;
-    ui<<A;
+    C=A+B;
+    C.Variable=1;
+    VectorIO Test;
+    ui<<Test &C;
+    //ui<<C;
 
-    A.MinusVectors(B);
-    A.Variable=2;
-    ui<<A;
+    C = A - B ;
+    C.Variable=2;
+    //ui<<C;
 
-    A.V_Mult(B);//Find Vector Multy
-    A.Variable=3;
-    ui<<A;
+    C = A * B ;
 
-
-    A.K_Mult(ui->line_K->text().toInt());//multiply vector A on number K
-    A.Variable=4;
-    ui<<A;
+    C = A.V_Mult(B);//Find Vector Multy
+    C.Variable=3;
+    //ui<<C;
 
 
-    A.MultyVectorSkalar(A,ui->line_skal->text().toInt());//multiply vector A on number Skalar
-    A.Variable=7;
-    ui<<A;
+    C = A.K_Mult(ui->line_K->text().toInt());//multiply vector A on number K
+    C.Variable=4;
+    //ui<<C;
+
+
+    C=MultyVectorSkalar(A,ui->line_skal->text().toInt());//multiply vector A on number Skalar
+    C.Variable=7;
+    //ui<<C;
 
     B.Variable=5;
-    ui<<B;
+    //ui<<B;
 
     A.Variable=6;
-    ui<<A;
+    //ui<<A;
 
 
     //Compare vector A and B

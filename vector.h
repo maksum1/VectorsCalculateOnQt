@@ -20,26 +20,25 @@ public:
     friend bool operator == (  Vector &b,  Vector &a) ;
     friend bool operator < (  Vector &b,  Vector &a);
     friend bool operator > (  Vector &b,  Vector &a);
-    friend void operator<<(Ui::MainWindow *os, Vector& a);
     friend Vector MultyVectorSkalar( Vector &A ,int Skal);
 
     //OverLoading Operators
-    void AddingVectors(Vector& B);
+    Vector operator+(Vector& B);
 
     Vector& operator=(Vector B);
 
-    void MultiplyVectors(Vector &B);
+    Vector operator *(Vector& B);
 
-    void MinusVectors(Vector &B);
+    Vector operator -(Vector& B);
 
     //Functions
-    void MultyVectorSkalar( Vector &A ,int Skal);
+    Vector MultyVectorSkalar( Vector &A ,int Skal);
 
     double Skalar(Vector &B)const;
 
-    void V_Mult(Vector &B);
+    Vector V_Mult(Vector &B);
 
-    void K_Mult(int K);
+    Vector K_Mult(int K);
 
     //Seters and Geters
     int x() const;
@@ -61,23 +60,6 @@ public:
     static int AddNumberObj();
     static int MinusNumberObj();
 
-    //Functions for print
-
-    void PrintSumVectors(Ui::MainWindow *ui);
-
-    void PrintMinusVector(Ui::MainWindow *ui);
-
-    void PrintMultyVectors(Ui::MainWindow *ui);
-
-    void PrintVectMulty(Ui::MainWindow *ui);
-
-    void PrintMultyOnNumber(Ui::MainWindow *ui);
-
-    void PrintWidthA(Ui::MainWindow *ui);
-    void PrintWidthB(Ui::MainWindow *ui);
-
-    void PrintVectorOnSkalar(Ui::MainWindow *ui);
-
     //Funtion for initiations Vectors
     void InitVectorA(Ui::MainWindow *ui);
     void InitVectorB(Ui::MainWindow *ui);
@@ -85,11 +67,12 @@ public:
     //add comment
 
     int Variable;
+    double Width();
+
 private:
 
     Ui::MainWindow *mi;
 
-    double Width();
 
     int m_x;
     int m_y;

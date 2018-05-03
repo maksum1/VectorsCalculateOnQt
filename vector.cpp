@@ -37,31 +37,27 @@ double Vector::Skalar(Vector &B) const
     return result;
 }
 
-Vector MultyVectorSkalar( Vector &A ,int Skal)
+void Vector::MultyVectorSkalar( Vector &A ,int Skal)
 {
-    Vector Temp;
-    Temp.setX(A.x()*Skal);
-    Temp.setY(A.y()*Skal);
-    Temp.setZ(A.z()*Skal);
-    return Temp;
+    this->m_x=(A.x()*Skal);
+    this->m_y=(A.y()*Skal);
+    this->m_z=(A.z()*Skal);
+
 }
 
-Vector Vector::V_Mult(Vector &B)
+void Vector::V_Mult(Vector &B)
 {
-    Vector Temp;
-    Temp.setX( m_y * B.z()- m_z * B.y() );
-    Temp.setY(( -1 ) * (m_x * B.z() - m_z * B.x() ));
-    Temp.setZ(m_x * B.y() - m_y * B.x());
-    return Temp;
+    this->m_x=( m_y * B.z()- m_z * B.y() );
+    this->m_y=(( -1 ) * (m_x * B.z() - m_z * B.x() ));
+    this->m_z=(m_x * B.y() - m_y * B.x());
+
 }
 
-Vector Vector::K_Mult(int K)
+void Vector::K_Mult(int K)
 {
-    Vector Temp;
-    Temp.setX(m_x*K);
-    Temp.setY(m_y*K);
-    Temp.setZ(m_z*K);
-    return Temp;
+    m_x*=K;
+    m_y*=K;
+    m_z*=K;
 }
 
 double Vector::Width()
@@ -159,44 +155,39 @@ void operator<<(Ui::MainWindow *os, Vector &a )
 }
 
 
-Vector Vector::operator+(Vector &B)
+void Vector::AddingVectors(Vector &B)
 {
     Vector temp;
 
-    temp.setX(this->m_x+B.x());
+    this->m_x=(this->m_x+B.x());
 
-    temp.setY(this->m_y+B.y());
+    this->m_y=(this->m_y+B.y());
 
-    temp.setZ(this->m_z+B.z());
-
-    return temp;
+    this->m_z=(this->m_z+B.z());
 
 }
 
-Vector &Vector::operator=(Vector B)
+//Vector &Vector::operator=(Vector B)
+//{
+//    this->m_x=B.x();
+//    this->m_y=B.y();
+//    this->m_z=B.z();
+//    return *this;
+//}
+
+void Vector::MultiplyVectors(Vector &B)
 {
-    this->m_x=B.x();
-    this->m_y=B.y();
-    this->m_z=B.z();
-    return *this;
+    this->m_x=(this->m_x*B.x());
+    this->m_y=(this->m_y*B.y());
+    this->m_z=(this->m_z*B.z());
+
 }
 
-Vector Vector::operator *(Vector &B)
+void Vector::MinusVectors(Vector &B)
 {
-    Vector temp;
-    temp.setX(this->m_x*B.x());
-    temp.setY(this->m_y*B.y());
-    temp.setZ(this->m_z*B.z());
-    return temp;
-}
-
-Vector Vector::operator -(Vector &B)
-{
-    Vector temp;
-    temp.setX(this->m_x-B.x());
-    temp.setY(this->m_y-B.y());
-    temp.setZ(this->m_z-B.z());
-    return temp;
+    this->m_x=(this->m_x-B.x());
+    this->m_y=(this->m_y-B.y());
+    this->m_z=(this->m_z-B.z());
 
 }
 

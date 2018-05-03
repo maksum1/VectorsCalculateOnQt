@@ -24,22 +24,22 @@ public:
     friend Vector MultyVectorSkalar( Vector &A ,int Skal);
 
     //OverLoading Operators
-    Vector operator+(Vector& B);
+    void AddingVectors(Vector& B);
 
     Vector& operator=(Vector B);
 
-    Vector operator *(Vector& B);
+    void MultiplyVectors(Vector &B);
 
-    Vector operator -(Vector& B);
+    void MinusVectors(Vector &B);
 
     //Functions
-    Vector MultyVectorSkalar( Vector &A ,int Skal);
+    void MultyVectorSkalar( Vector &A ,int Skal);
 
     double Skalar(Vector &B)const;
 
-    Vector V_Mult(Vector &B);
+    void V_Mult(Vector &B);
 
-    Vector K_Mult(int K);
+    void K_Mult(int K);
 
     //Seters and Geters
     int x() const;

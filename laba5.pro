@@ -26,13 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    vector.cpp \
-    vectorio.cpp
+    vector.cpp
 
 HEADERS += \
         mainwindow.h \
-    vector.h \
-    vectorio.h
+    vector.h
 
 FORMS += \
         mainwindow.ui

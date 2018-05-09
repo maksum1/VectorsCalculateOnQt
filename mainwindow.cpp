@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-#include<vectorio.h>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -24,6 +23,66 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
+void operator<<(Ui::MainWindow *os,  Vector &a )
+{
+    if(a.Variable ==1 )
+    {
+        os->line_Add_x->setText(QString::number(a.x()));
+        os->line_Add_y->setText(QString::number(a.y()));
+        os->line_Add_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 2)
+    {
+        os->line_Minus_x->setText(QString::number(a.x()));
+        os->line_Minus_y->setText(QString::number(a.y()));
+        os->line_Minus_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 3)
+    {
+        os->line_vect_x->setText(QString::number(a.x()));
+        os->line_vect_y->setText(QString::number(a.y()));
+        os->line_vect_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 4)
+    {
+        os->line_K_x->setText(QString::number(a.x()));
+        os->line_K_y->setText(QString::number(a.y()));
+        os->line_K_z->setText(QString::number(a.z()));
+    }
+    if(a.Variable == 5)
+    {
+        os->lineWidthB->setText(QString::number(a.Length()));
+    }
+    if(a.Variable == 6)
+    {
+        os->line_Width->setText(QString::number(a.Length()));
+    }
+
+    if(a.Variable == 7)
+    {
+        os->line_sk_x->setText(QString::number(a.x()));
+        os->line_sk_y->setText(QString::number(a.y()));
+        os->line_sk_z->setText(QString::number(a.z()));
+    }
+}
+
+void operator>>(Ui::MainWindow *is,  Vector &a )
+{
+    if(a.Variable == 11)
+    {
+        a.setX(is->line_a_x->text().toInt());
+        a.setY(is->line_a_y->text().toInt());
+        a.setZ(is->line_a_z->text().toInt());
+    }
+    if(a.Variable == 22)
+    {
+        a.setX(is->line_b_x->text().toInt());
+        a.setY(is->line_b_y->text().toInt());
+        a.setZ(is->line_b_z->text().toInt());
+    }
+
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -36,47 +95,43 @@ void MainWindow::on_pushButton_clicked()
     Vector B;
     Vector C;
 
-
-    //initiations of A and B Vectors
-    A.InitVectorA(ui);
-    B.InitVectorB(ui);
+    A.Variable=11;
+    ui>>A;
+    B.Variable=22;
+    ui>>B;
 
     //initiation C vector
 
     ui->line_skalar->setText(QString::number(A.Skalar(B)));
 
-
     C=A+B;
     C.Variable=1;
-    VectorIO Test;
-    ui<<Test &C;
-    //ui<<C;
+    ui<<C;
 
     C = A - B ;
     C.Variable=2;
-    //ui<<C;
+    ui<<C;
 
     C = A * B ;
 
-    C = A.V_Mult(B);//Find Vector Multy
+    C = A.V_Multiply(B);//Find Vector Multy
     C.Variable=3;
-    //ui<<C;
+    ui<<C;
 
 
-    C = A.K_Mult(ui->line_K->text().toInt());//multiply vector A on number K
+    C = A.MultiplyOnK(ui->line_K->text().toInt());//multiply vector A on number K
     C.Variable=4;
-    //ui<<C;
+    ui<<C;
 
-
-    C=MultyVectorSkalar(A,ui->line_skal->text().toInt());//multiply vector A on number Skalar
+    C=A.MultiplyOnSkalar(ui->line_skal->text().toInt());//multiply vector A on number Skalar
     C.Variable=7;
-    //ui<<C;
+    ui<<C;
 
     B.Variable=5;
-    //ui<<B;
+    ui<<B;
 
     A.Variable=6;
-    //ui<<A;
+    ui<<A;
 
 
     //Compare vector A and B
